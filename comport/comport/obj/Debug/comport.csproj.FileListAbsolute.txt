@@ -1,0 +1,59 @@
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.Form1.resources
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.Properties.Resources.resources
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\comport\comport\bin\Debug\comport.exe.config
+C:\Users\Admin\source\repos\comport\comport\bin\Debug\comport.exe
+C:\Users\Admin\source\repos\comport\comport\bin\Debug\comport.pdb
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.exe
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.pdb
+F:\New folder\backup\comport\comport\bin\Debug\comport.exe.config
+F:\New folder\backup\comport\comport\bin\Debug\comport.exe
+F:\New folder\backup\comport\comport\bin\Debug\comport.pdb
+F:\New folder\backup\comport\comport\obj\Debug\comport.csprojAssemblyReference.cache
+F:\New folder\backup\comport\comport\obj\Debug\comport.Form1.resources
+F:\New folder\backup\comport\comport\obj\Debug\comport.Properties.Resources.resources
+F:\New folder\backup\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
+F:\New folder\backup\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
+F:\New folder\backup\comport\comport\obj\Debug\comport.exe
+F:\New folder\backup\comport\comport\obj\Debug\comport.pdb
+G:\New folder\backup\comport\comport\bin\Debug\comport.exe.config
+G:\New folder\backup\comport\comport\bin\Debug\comport.exe
+G:\New folder\backup\comport\comport\bin\Debug\comport.pdb
+G:\New folder\backup\comport\comport\obj\Debug\comport.Form1.resources
+G:\New folder\backup\comport\comport\obj\Debug\comport.Properties.Resources.resources
+G:\New folder\backup\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
+G:\New folder\backup\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
+G:\New folder\backup\comport\comport\obj\Debug\comport.exe
+G:\New folder\backup\comport\comport\obj\Debug\comport.pdb
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\bin\Debug\comport.exe.config
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\bin\Debug\comport.exe
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\bin\Debug\comport.pdb
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.csproj.AssemblyReference.cache
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.Form1.resources
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.Properties.Resources.resources
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.exe
+F:\VISUAL PROJECT\C#\New folder\backup\comport\comport\obj\Debug\comport.pdb
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\bin\Debug\comport.exe.config
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\bin\Debug\comport.exe
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\bin\Debug\comport.pdb
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.csproj.AssemblyReference.cache
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.Form1.resources
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.Properties.Resources.resources
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.exe
+F:\VISUAL PROJECT\C#\Visual Official\comport\comport\obj\Debug\comport.pdb
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\bin\Debug\comport.exe.config
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\bin\Debug\comport.exe
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\bin\Debug\comport.pdb
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.csproj.AssemblyReference.cache
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.Form1.resources
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.Properties.Resources.resources
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.exe
+F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.pdb

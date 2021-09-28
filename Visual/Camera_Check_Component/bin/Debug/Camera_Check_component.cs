@@ -21,8 +21,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-
-
+using System.Net.Mail;
 
 namespace Camera_Check_Component
 {
@@ -1552,21 +1551,61 @@ namespace Camera_Check_Component
             //        filePath,
             //        FileMode.Open, FileAccess.Read, FileShare.Read,
             //        bufferSize: 4096, useAsync: true);
-            using (var sourceStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
+            var sb = new StringBuilder();
+            bool er = false;
+            try
             {
-                var sb = new StringBuilder();
-
-                byte[] buffer = new byte[0x1000];
-                int numRead;
-                while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                using (var sourceStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
                 {
-                    string text = Encoding.ASCII.GetString(buffer, 0, numRead);
-                    sb.Append(text);
+                   // var sb = new StringBuilder();
+
+                    byte[] buffer = new byte[0x1000];
+                    int numRead;
+                    while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                    {
+                        string text = Encoding.ASCII.GetString(buffer, 0, numRead);
+                        sb.Append(text);
+                    }
+                    er = false;
+                    return sb.ToString();
+                    
                 }
 
+            }
+            catch (Exception)
+            {
+                er = true;
+                while (er) 
+                {
+                    try
+                    {
+                        using (var sourceStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true))
+                        {
+                            // var sb = new StringBuilder();
+
+                            byte[] buffer = new byte[0x1000];
+                            int numRead;
+                            while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                            {
+                                string text = Encoding.ASCII.GetString(buffer, 0, numRead);
+                                sb.Append(text);
+                            }
+                            er = false;
+                            
+                           
+                            
+                        }
+                        break;
+                    }
+                    catch (Exception)
+                    {
+
+                        er = true;
+                    }
+                }
                 return sb.ToString();
             }
-
+           
         }
         public async Task ProcessReadAsync(string path, char mode)
         {
@@ -1628,7 +1667,7 @@ namespace Camera_Check_Component
                 catch (Exception ex)
                 {
                     status(ex.Message);
-                    MessageBox.Show("Read A "+ex.Message);
+                    
                 }
             }
         }
@@ -6508,7 +6547,155 @@ namespace Camera_Check_Component
             }
             else { allow_check = false; }
         }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t1 = new Thread(() =>
+            {
+                MethodInvoker methodInvoker = delegate
+                {
+                    reportToolStripMenuItem.Text = "Sending...";
+                };this.Invoke(methodInvoker);
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                get = true;
+                screenBitmap = new Bitmap(Screen.AllScreens[0].Bounds.Width,
+                                             Screen.AllScreens[0].Bounds.Height,
+                                             PixelFormat.Format32bppArgb);
+                screenGraphics = Graphics.FromImage(screenBitmap);
+                screenGraphics.CopyFromScreen(Screen.AllScreens[0].Bounds.X, Screen.AllScreens[0].Bounds.Y,
+                                        0, 0, Screen.AllScreens[0].Bounds.Size, CopyPixelOperation.SourceCopy);
+                screenBitmap.Save(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\report1.png", ImageFormat.Png);
+                screenBitmap = new Bitmap(Screen.AllScreens[1].Bounds.Width,
+                                             Screen.AllScreens[1].Bounds.Height,
+                                             PixelFormat.Format32bppArgb);
+                screenGraphics = Graphics.FromImage(screenBitmap);
+                screenGraphics.CopyFromScreen(Screen.AllScreens[1].Bounds.X, Screen.AllScreens[1].Bounds.Y,
+                                        0, 0, Screen.AllScreens[1].Bounds.Size, CopyPixelOperation.SourceCopy);
+                screenBitmap.Save(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\report2.png", ImageFormat.Png);
+                GuiMail("Send from Premo \n<CPU> :" + cPu.ToString() + "% <RAM> :" + RAM.NextValue().ToString() + " MB Free ");
+
+                stopwatch.Stop();
+                if (!stopwatch.IsRunning) 
+                {
+                    MethodInvoker methodInvoker1 = delegate 
+                    {
+                        reportToolStripMenuItem.Text = "Send Report Email";
+                    };this.Invoke(methodInvoker1);
+                }
+                TimeSpan ts = stopwatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                 ts.Hours, ts.Minutes, ts.Seconds,
+                 ts.Milliseconds / 10);
+                
+                
+                
+            });
+            t1.Start();
+            t1.IsBackground = true;
+        }
+        float cPu = 0.0f;
+        private void GetCPU()
+        {
+            CPU = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            RAM = new PerformanceCounter("Memory", "Available MBytes");
+
+
+            Thread CPu = new Thread(() =>
+            {
+                while (true)
+                {
+                    float cpu = CPU.NextValue();
+                    int ram = (int)RAM.NextValue();
+                    Thread.Sleep(200);
+                    if (get)
+                    {
+                        cPu = cpu;
+                        get = false;
+                    }
+                    MethodInvoker inv = delegate
+                    {
+                        progressBar1.Value = (int)cpu;
+                        label2.Text = cpu.ToString();
+                    }; this.Invoke(inv);
+                }
+
+            });
+            CPu.Start();
+            //CPu.Join();
+            CPu.IsBackground = true;
+        }
+        private void GuiMail(string message)
+        {
+            try
+            {
+                MailMessage mes = new MailMessage("reportsend766@gmail.com", "support@fwdvina.com", "Report About Trouble", message);
+                //MailMessage mes = new MailMessage("reportsend766@gmail.com", "receiveemail788@gmail.com", "Report About Trouble", message);
+                Attachment attachment = null;
+                Attachment attachment1 = null;
+                Attachment attachment2 = null;
+                Attachment attachment3 = null;
+                //string[] file = new string[] { @"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\SystemConfig.xml", @"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\Console.txt" };
+                //string[] file = new string[] { @"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\Console.txt", @"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\SystemConfig.xml" };
+
+                try
+                {
+                   
+                    File.Copy(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\SystemConfig.xml", @"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\SystemConfigCP.xml",true);
+                    File.Copy(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\Console.txt", @"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\ConsoleCp.txt",true);
+
+                    FileInfo check = new FileInfo(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\SystemConfigCP.xml");
+                    attachment = new Attachment(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\SystemConfigCP.xml");
+                    FileInfo check1 = new FileInfo(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\ConsoleCp.txt");
+                    attachment1 = new Attachment(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\ConsoleCp.txt");
+                    //FileInfo check = new FileInfo(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\SystemConfig.xml");
+                    //attachment = new Attachment(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\SystemConfig.xml");
+                    //FileInfo check1 = new FileInfo(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\Console.txt");
+                    //attachment1 = new Attachment(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\Console.txt");
+
+                    FileInfo check2 = new FileInfo(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\report1.png");
+                    attachment2 = new Attachment(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\report1.png");
+                    FileInfo check3 = new FileInfo(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\report2.png");
+                    attachment3 = new Attachment(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\report2.png");
+                    //FileInfo check2 = new FileInfo(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\report1.png");
+                    //attachment2 = new Attachment(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\report1.png");
+                    //FileInfo check3 = new FileInfo(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\report2.png");
+                    //attachment3 = new Attachment(@"F:\VISUAL PROJECT\C#\Winfom\Visual Official\Visual\Camera_Check_Component\bin\Debug\report2.png");
+
+                    mes.Attachments.Add(attachment);
+                    mes.Attachments.Add(attachment1);
+                    mes.Attachments.Add(attachment2);
+                    mes.Attachments.Add(attachment3);
+
+                    File.WriteAllText(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\Console.txt", "");
+
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Attach file error :"+ ex.Message);
+                }
+
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("reportsend766@gmail.com", "fwd@2021");
+                client.Send(mes);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Send Email error :"+ex.Message);
+            }
+
+
+        }
+        PerformanceCounter CPU;
+        PerformanceCounter RAM;
+        bool get = false;
+        private Bitmap screenBitmap;
+        Graphics screenGraphics;
     }
-    }
+}
 
 

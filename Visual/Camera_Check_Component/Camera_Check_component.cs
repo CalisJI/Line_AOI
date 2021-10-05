@@ -1919,6 +1919,11 @@ namespace Camera_Check_Component
                 {
                     string[] OK_NG = new string[7];
                     OK_NG = readb1.Split(';');
+
+                    if(d_check) 
+                    {
+                        return;
+                    }
                     if (OK_NG[0] == "OK1" && allow_check && !run_out1)
                     {
                         if (on1 != 1)
@@ -1934,11 +1939,37 @@ namespace Camera_Check_Component
                                     string Addr = "M26.1";
                                     PLCS7_1200.Write(Addr, true);
                                     d_check = true;
-                                    MethodInvoker inv1 = delegate
-                                    {
-                                        D_timer.Enabled = true;
-                                        D_timer.Start();
-                                    }; this.Invoke(inv1);
+
+                                    //****************************************************
+                                  
+                                        if (on1 == 1)
+                                        {
+                                            zoom1(1, false, 0);
+                                        }
+
+                                        OK1_check();
+                                        MethodInvoker inv = delegate
+                                        {
+
+                                            waiting1.Text = "CHỜ MỘT CHÚT.....";
+                                            waiting2.Text = "ĐẾN LƯỢT BẠN";
+                                            button3.Enabled = true;
+                                            button2.Enabled = false;
+                                        }; this.Invoke(inv);
+                                        wr1 = false;
+                                        begin_ok1 = false;
+                                        ready1 = false;
+                                        //d_check = false;
+                                        //D_timer.Stop();
+                                        //D_timer.Enabled = false;
+                                        //coun_d = 0;
+                                    
+                                    //**************************************************
+                                    //MethodInvoker inv1 = delegate
+                                    //{
+                                    //    D_timer.Enabled = true;
+                                    //    D_timer.Start();
+                                    //}; this.Invoke(inv1);
                                 }
                                 catch (Exception)
                                 {
@@ -1967,11 +1998,39 @@ namespace Camera_Check_Component
                                     string Addr = "M26.1";
                                     PLCS7_1200.Write(Addr, true);
                                     d_check = true;
-                                    MethodInvoker inv1 = delegate
-                                    {
-                                        D_timer.Enabled = true;
-                                        D_timer.Start();
-                                    }; this.Invoke(inv1);
+
+                                    //*******************************************
+
+                                   
+                                        if (on1 == 1)
+                                        {
+                                            zoom1(1, false, 0);
+                                        }
+
+                                        OK1_check();
+                                        MethodInvoker inv = delegate
+                                        {
+
+                                            waiting1.Text = "CHỜ MỘT CHÚT.....";
+                                            waiting2.Text = "ĐẾN LƯỢT BẠN";
+                                            button3.Enabled = true;
+                                            button2.Enabled = false;
+                                        }; this.Invoke(inv);
+                                        wr1 = false;
+                                        begin_ok1 = false;
+                                        ready1 = false;
+                                        //d_check = false;
+                                        //D_timer.Stop();
+                                        //D_timer.Enabled = false;
+                                        //coun_d = 0;
+                                    
+                                    //*******************************************
+
+                                    //MethodInvoker inv1 = delegate
+                                    //{
+                                    //    D_timer.Enabled = true;
+                                    //    D_timer.Start();
+                                    //}; this.Invoke(inv1);
                                 }
                                 catch (Exception)
                                 {
@@ -2004,11 +2063,39 @@ namespace Camera_Check_Component
                                     string Addr = "M26.1";
                                     PLCS7_1200.Write(Addr, true);
                                     d_check = true;
-                                    MethodInvoker inv1 = delegate 
-                                    {
-                                        D_timer.Enabled = true;
-                                        D_timer.Start();
-                                    };this.Invoke(inv1);
+
+                                    //*****************************************************
+
+                                    
+
+                                        if (on1 == 1)
+                                        {
+                                            zoom1(1, false, 0);
+                                        }
+
+                                        NG1_check();
+                                        MethodInvoker inv = delegate
+                                        {
+
+                                            waiting1.Text = "CHỜ MỘT CHÚT.....";
+                                            waiting2.Text = "ĐẾN LƯỢT BẠN";
+                                            button3.Enabled = true;
+                                            button2.Enabled = false;
+                                        }; this.Invoke(inv);
+                                        wr1 = false;
+                                        begin_ng1 = false;
+                                        ready1 = false;
+                                        //d_check = false;
+                                        //D_timer.Stop();
+                                        //D_timer.Enabled = false;
+                                        //coun_d = 0;
+                                    
+                                    //*****************************************************
+                                    //MethodInvoker inv1 = delegate 
+                                    //{
+                                    //    D_timer.Enabled = true;
+                                    //    D_timer.Start();
+                                    //};this.Invoke(inv1);
                                     
                                 }
                                 catch (Exception)
@@ -2040,11 +2127,38 @@ namespace Camera_Check_Component
                                     string Addr = "M26.1";
                                     PLCS7_1200.Write(Addr, true);
                                     d_check = true;
-                                    MethodInvoker inv1 = delegate
-                                    {
-                                        D_timer.Enabled = true;
-                                        D_timer.Start();
-                                    }; this.Invoke(inv1);
+
+                                    //*******************************************************
+                                   
+
+                                        if (on1 == 1)
+                                        {
+                                            zoom1(1, false, 0);
+                                        }
+
+                                        NG1_check();
+                                        MethodInvoker inv = delegate
+                                        {
+
+                                            waiting1.Text = "CHỜ MỘT CHÚT.....";
+                                            waiting2.Text = "ĐẾN LƯỢT BẠN";
+                                            button3.Enabled = true;
+                                            button2.Enabled = false;
+                                        }; this.Invoke(inv);
+                                        wr1 = false;
+                                        begin_ng1 = false;
+                                        ready1 = false;
+                                        //d_check = false;
+                                        //D_timer.Stop();
+                                        //D_timer.Enabled = false;
+                                        //coun_d = 0;
+                                    
+                                    //*******************************************************
+                                    //MethodInvoker inv1 = delegate
+                                    //{
+                                    //    D_timer.Enabled = true;
+                                    //    D_timer.Start();
+                                    //}; this.Invoke(inv1);
                                 }
                                 catch (Exception)
                                 {
@@ -2107,6 +2221,10 @@ namespace Camera_Check_Component
             {
                 string[] OK_NG = new string[7];
                 OK_NG = readc1.Split(';');
+                if (d_check)
+                {
+                    return;
+                }
                 if (OK_NG[0] == "OK2" && allow_check && !run_out2)
                 {
                     if (on2 != 1)
@@ -2122,11 +2240,30 @@ namespace Camera_Check_Component
                                 string Addr = "M27.1";
                                 PLCS7_1200.Write(Addr, true);
                                 d_check = true;
-                                MethodInvoker inv1 = delegate
+                                //***************************************************
+                                OK2_check();
+                                MethodInvoker inv = delegate
                                 {
-                                    D_timer.Enabled = true;
-                                    D_timer.Start();
-                                }; this.Invoke(inv1);
+
+                                    waiting2.Text = "CHỜ MỘT CHÚT.....";
+                                    waiting1.Text = "ĐẾN LƯỢT BẠN";
+                                    button2.Enabled = true;
+                                    button3.Enabled = false;
+
+                                }; this.Invoke(inv);
+                                wr2 = false;
+                                begin_ok2 = false;
+                                ready2 = false;
+                                //d_check = false;
+                                //D_timer.Stop();
+                                //D_timer.Enabled = false;
+                                //coun_d = 0;
+                                //***************************************************
+                                //MethodInvoker inv1 = delegate
+                                //{
+                                //    D_timer.Enabled = true;
+                                //    D_timer.Start();
+                                //}; this.Invoke(inv1);
                             }
                             catch (Exception)
                             {
@@ -2155,11 +2292,40 @@ namespace Camera_Check_Component
                                 string Addr = "M27.1";
                                 PLCS7_1200.Write(Addr, true);
                                 d_check = true;
-                                MethodInvoker inv1 = delegate
-                                {
-                                    D_timer.Enabled = true;
-                                    D_timer.Start();
-                                }; this.Invoke(inv1);
+
+                                //************************************************************
+
+                               
+                                    if (on2 == 1)
+                                    {
+                                        zoom2(1, false, 0);
+                                    }
+
+                                    OK2_check();
+                                    MethodInvoker inv = delegate
+                                    {
+
+                                        waiting2.Text = "CHỜ MỘT CHÚT.....";
+                                        waiting1.Text = "ĐẾN LƯỢT BẠN";
+                                        button2.Enabled = true;
+                                        button3.Enabled = false;
+
+                                    }; this.Invoke(inv);
+                                    wr2 = false;
+                                    begin_ok2 = false;
+                                    ready2 = false;
+                                    //d_check = false;
+                                    //D_timer.Stop();
+                                    //D_timer.Enabled = false;
+                                    //coun_d = 0;
+                               
+
+                                //***********************************************************
+                                //MethodInvoker inv1 = delegate
+                                //{
+                                //    D_timer.Enabled = true;
+                                //    D_timer.Start();
+                                //}; this.Invoke(inv1);
                             }
                             catch (Exception)
                             {
@@ -2192,11 +2358,33 @@ namespace Camera_Check_Component
                                 string Addr = "M27.1";
                                 PLCS7_1200.Write(Addr, true);
                                 d_check = true;
-                                MethodInvoker inv1 = delegate
-                                {
-                                    D_timer.Enabled = true;
-                                    D_timer.Start();
-                                }; this.Invoke(inv1);
+
+                                //**********************************************************************
+                              
+
+                                    NG2_check();
+                                    MethodInvoker inv = delegate
+                                    {
+
+                                        waiting2.Text = "CHỜ MỘT CHÚT.....";
+                                        waiting1.Text = "ĐẾN LƯỢT BẠN";
+                                        button2.Enabled = true;
+                                        button3.Enabled = false;
+                                    }; this.Invoke(inv);
+                                    wr2 = false;
+                                    begin_ng2 = false;
+                                    ready2 = false;
+                                    //d_check = false;
+                                    //D_timer.Stop();
+                                    //D_timer.Enabled = false;
+                                    //coun_d = 0;
+                            
+                                //*****************************************************************
+                                //MethodInvoker inv1 = delegate
+                                //{
+                                //    D_timer.Enabled = true;
+                                //    D_timer.Start();
+                                //}; this.Invoke(inv1);
                             }
                             catch (Exception)
                             {
@@ -2227,11 +2415,38 @@ namespace Camera_Check_Component
                                 string Addr = "M27.1";
                                 PLCS7_1200.Write(Addr, true);
                                 d_check = true;
-                                MethodInvoker inv1 = delegate
-                                {
-                                    D_timer.Enabled = true;
-                                    D_timer.Start();
-                                }; this.Invoke(inv1);
+
+                                //*******************************************************************
+
+                               
+                                    if (on2 == 1)
+                                    {
+                                        zoom2(1, false, 0);
+                                    }
+
+                                    NG2_check();
+                                    MethodInvoker inv = delegate
+                                    {
+
+                                        waiting2.Text = "CHỜ MỘT CHÚT.....";
+                                        waiting1.Text = "ĐẾN LƯỢT BẠN";
+                                        button2.Enabled = true;
+                                        button3.Enabled = false;
+                                    }; this.Invoke(inv);
+                                    wr2 = false;
+                                    begin_ng2 = false;
+                                    ready2 = false;
+                                    //d_check = false;
+                                    //D_timer.Stop();
+                                    //D_timer.Enabled = false;
+                                    //coun_d = 0;
+                                
+                                //*******************************************************************
+                                //MethodInvoker inv1 = delegate
+                                //{
+                                //    D_timer.Enabled = true;
+                                //    D_timer.Start();
+                                //}; this.Invoke(inv1);
                             }
                             catch (Exception)
                             {
@@ -2291,123 +2506,124 @@ namespace Camera_Check_Component
                 OK_NG = readd1.Split(';');
                 if (OK_NG[0] == "D" && ready2 && begin_ok2)
                 {
-
+                    d_check = false;
                     PLCS7_1200.Write("M79.3", true);
-                    if (!wr2)
-                    {
-                        if (on2 == 1)
-                        {
-                            zoom2(1, false, 0);
-                        }
+                    //if (!wr2)
+                    //{
+                    //    if (on2 == 1)
+                    //    {
+                    //        zoom2(1, false, 0);
+                    //    }
 
-                        OK2_check();
-                        MethodInvoker inv = delegate
-                        {
+                    //    OK2_check();
+                    //    MethodInvoker inv = delegate
+                    //    {
 
-                            waiting2.Text = "CHỜ MỘT CHÚT.....";
-                            waiting1.Text = "ĐẾN LƯỢT BẠN";
-                            button2.Enabled = true;
-                            button3.Enabled = false;
+                    //        waiting2.Text = "CHỜ MỘT CHÚT.....";
+                    //        waiting1.Text = "ĐẾN LƯỢT BẠN";
+                    //        button2.Enabled = true;
+                    //        button3.Enabled = false;
 
-                        }; this.Invoke(inv);
-                        wr2 = false;
-                        begin_ok2 = false;
-                        ready2 = false;
-                        d_check = false;
-                        D_timer.Stop();
-                        D_timer.Enabled = false;
-                        coun_d = 0;
-                    }
+                    //    }; this.Invoke(inv);
+                    //    wr2 = false;
+                    //    begin_ok2 = false;
+                    //    ready2 = false;
+                    //    d_check = false;
+                    //    D_timer.Stop();
+                    //    D_timer.Enabled = false;
+                    //    coun_d = 0;
+                    //}
                 }
                 if (OK_NG[0] == "D" && ready2 && begin_ng2)
                 {
-
+                    d_check = false;
                     PLCS7_1200.Write("M79.3", true);
-                    if (!wr2)
-                    {
+                    //if (!wr2)
+                    //{
 
-                        if (on2 == 1)
-                        {
-                            zoom2(1, false, 0);
-                        }
+                    //    if (on2 == 1)
+                    //    {
+                    //        zoom2(1, false, 0);
+                    //    }
 
-                        NG2_check();
-                        MethodInvoker inv = delegate
-                        {
+                    //    NG2_check();
+                    //    MethodInvoker inv = delegate
+                    //    {
 
-                            waiting2.Text = "CHỜ MỘT CHÚT.....";
-                            waiting1.Text = "ĐẾN LƯỢT BẠN";
-                            button2.Enabled = true;
-                            button3.Enabled = false;
-                        }; this.Invoke(inv);
-                        wr2 = false;
-                        begin_ng2 = false;
-                        ready2 = false;
-                        d_check = false;
-                        D_timer.Stop();
-                        D_timer.Enabled = false;
-                        coun_d = 0;
-                    }
+                    //        waiting2.Text = "CHỜ MỘT CHÚT.....";
+                    //        waiting1.Text = "ĐẾN LƯỢT BẠN";
+                    //        button2.Enabled = true;
+                    //        button3.Enabled = false;
+                    //    }; this.Invoke(inv);
+                    //    wr2 = false;
+                    //    begin_ng2 = false;
+                    //    ready2 = false;
+                    //    d_check = false;
+                    //    D_timer.Stop();
+                    //    D_timer.Enabled = false;
+                    //    coun_d = 0;
+                    //}
                 }
                 if (OK_NG[0] == "D" && ready1 && begin_ok1)
                 {
                     //if ( ready1 && begin_ok1)
                     //{
+                    d_check = false;
                     PLCS7_1200.Write("M79.3", true);
-                    if (!wr1)
-                    {
-                        if (on1 == 1)
-                        {
-                            zoom1(1, false, 0);
-                        }
+                    //if (!wr1)
+                    //{
+                    //    if (on1 == 1)
+                    //    {
+                    //        zoom1(1, false, 0);
+                    //    }
 
-                        OK1_check();
-                        MethodInvoker inv = delegate
-                        {
+                    //    OK1_check();
+                    //    MethodInvoker inv = delegate
+                    //    {
 
-                            waiting1.Text = "CHỜ MỘT CHÚT.....";
-                            waiting2.Text = "ĐẾN LƯỢT BẠN";
-                            button3.Enabled = true;
-                            button2.Enabled = false;
-                        }; this.Invoke(inv);
-                        wr1 = false;
-                        begin_ok1 = false;
-                        ready1 = false;
-                        d_check = false;
-                        D_timer.Stop();
-                        D_timer.Enabled = false;
-                        coun_d = 0;
-                    }
+                    //        waiting1.Text = "CHỜ MỘT CHÚT.....";
+                    //        waiting2.Text = "ĐẾN LƯỢT BẠN";
+                    //        button3.Enabled = true;
+                    //        button2.Enabled = false;
+                    //    }; this.Invoke(inv);
+                    //    wr1 = false;
+                    //    begin_ok1 = false;
+                    //    ready1 = false;
+                    //    d_check = false;
+                    //    D_timer.Stop();
+                    //    D_timer.Enabled = false;
+                    //    coun_d = 0;
+                    //}
                 }
                 if (OK_NG[0] == "D" && ready1 && begin_ng1)
                 {
-
+                    d_check = false;
                     PLCS7_1200.Write("M79.3", true);
-                    if (!wr1)
-                    {
+                    //if (!wr1)
+                    //{
 
-                        if (on1 == 1)
-                        {
-                            zoom1(1, false, 0);
-                        }
+                    //    if (on1 == 1)
+                    //    {
+                    //        zoom1(1, false, 0);
+                    //    }
 
-                        NG1_check();
-                        MethodInvoker inv = delegate
-                        {
+                    //    NG1_check();
+                    //    MethodInvoker inv = delegate
+                    //    {
 
-                            waiting1.Text = "CHỜ MỘT CHÚT.....";
-                            waiting2.Text = "ĐẾN LƯỢT BẠN";
-                            button3.Enabled = true;
-                            button2.Enabled = false;
-                        }; this.Invoke(inv);
-                        wr1 = false;
-                        begin_ng1 = false;
-                        ready1 = false;
-                        d_check = false;
-                        D_timer.Stop();
-                        D_timer.Enabled = false;
-                         coun_d = 0;
-                    }
+                    //        waiting1.Text = "CHỜ MỘT CHÚT.....";
+                    //        waiting2.Text = "ĐẾN LƯỢT BẠN";
+                    //        button3.Enabled = true;
+                    //        button2.Enabled = false;
+                    //    }; this.Invoke(inv);
+                    //    wr1 = false;
+                    //    begin_ng1 = false;
+                    //    ready1 = false;
+                    //    d_check = false;
+                    //    D_timer.Stop();
+                    //    D_timer.Enabled = false;
+                    //     coun_d = 0;
+                    //}
                 }
             }
 

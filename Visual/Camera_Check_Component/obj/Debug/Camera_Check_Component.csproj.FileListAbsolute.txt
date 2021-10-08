@@ -286,3 +286,4 @@ C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Cam
 C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.exe
 C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.pdb
 C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Connection.resources
+C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.AssemblyReference.cache

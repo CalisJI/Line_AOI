@@ -1,4 +1,3 @@
-C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.csprojAssemblyReference.cache
 C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.Form1.resources
 C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.Properties.Resources.resources
 C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.csproj.GenerateResource.cache
@@ -57,3 +56,4 @@ F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.csproj.Generat
 F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.csproj.CoreCompileInputs.cache
 F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.exe
 F:\VISUAL PROJECT\C#\Visual AOI\comport\comport\obj\Debug\comport.pdb
+C:\Users\Admin\source\repos\comport\comport\obj\Debug\comport.csproj.AssemblyReference.cache

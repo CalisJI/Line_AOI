@@ -154,6 +154,12 @@
     <Compile Include="Com_setting.Designer.cs">
       <DependentUpon>Com_setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connection.Designer.cs">
+      <DependentUpon>Connection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Com_setting.resx">
       <DependentUpon>Com_setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connection.resx">
+      <DependentUpon>Connection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -265,6 +274,9 @@
     <None Include="Resources\up-icon1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\output-onlinegiftools.gif" />
+    <None Include="Resources\check-1-icon.png" />
+    <None Include="Resources\sign-error-icon.png" />
     <Content Include="Tuziibanez-Profesional-Red-Pictures-folder.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,6 +29,15 @@ namespace comport
         {
             try
             {
+                Startlistener();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            try
+            {
                 if (!File.Exists(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt"))
                 {
                     File.Create(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt").Close();
@@ -166,9 +175,9 @@ namespace comport
                 while (true)
                 {
                     var client = server.AcceptTcpClient();
-                    MessageBox.Show("Connect Client Successfully");
                         if (client.Connected)
                     {
+                        
                         NetworkStream stream = client.GetStream();
                         while (true)
                         {
@@ -204,6 +213,11 @@ namespace comport
         private void btntest_Click(object sender, EventArgs e)
         {
             Startlistener();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

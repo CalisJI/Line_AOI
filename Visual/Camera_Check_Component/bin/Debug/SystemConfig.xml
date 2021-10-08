@@ -5,23 +5,23 @@
   <Output_File>C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\Output.txt</Output_File>
   <DefaultComport>COM1</DefaultComport>
   <DefaultCOMBaudrate>9600</DefaultCOMBaudrate>
-  <Camera1>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;2c504e7c&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera1>
-  <Camera2>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;299abf3e&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera2>
-  <Camera3>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;16e10e99&amp;1&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera3>
-  <Camera4>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;3ada9e09&amp;1&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera4>
-  <Camera5>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;8216df6&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera5>
-  <Camera6>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;31028758&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera6>
+  <Camera1>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;1b4e9469&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera1>
+  <Camera2>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;2c504e7c&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera2>
+  <Camera3>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;2e08450e&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera3>
+  <Camera4>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;2edff873&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera4>
+  <Camera5>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;cda4f41&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera5>
+  <Camera6>@device:pnp:\\?\usb#vid_0ac8&amp;pid_3420&amp;mi_00#6&amp;5272bac&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global</Camera6>
   <add_cam>false</add_cam>
-  <Location_cam1_folder>3750</Location_cam1_folder>
-  <Location_cam2_folder>3750</Location_cam2_folder>
-  <Location_cam3_folder>3750</Location_cam3_folder>
-  <Location_cam4_folder>3749</Location_cam4_folder>
-  <Location_cam5_folder>3746</Location_cam5_folder>
-  <Location_cam6_folder>3745</Location_cam6_folder>
+  <Location_cam1_folder>0</Location_cam1_folder>
+  <Location_cam2_folder>0</Location_cam2_folder>
+  <Location_cam3_folder>0</Location_cam3_folder>
+  <Location_cam4_folder>0</Location_cam4_folder>
+  <Location_cam5_folder>0</Location_cam5_folder>
+  <Location_cam6_folder>0</Location_cam6_folder>
   <Location_cam7_folder>0</Location_cam7_folder>
-  <Folder_load_check>3743</Folder_load_check>
-  <Folder_index_tranfer>3744</Folder_index_tranfer>
-  <same_folder_1>3744</same_folder_1>
+  <Folder_load_check>1</Folder_load_check>
+  <Folder_index_tranfer>0</Folder_index_tranfer>
+  <same_folder_1>0</same_folder_1>
   <same_folder_2>0</same_folder_2>
   <old_Day1>0</old_Day1>
   <old_Month1>0</old_Month1>

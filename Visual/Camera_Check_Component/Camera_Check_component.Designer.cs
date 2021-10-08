@@ -257,6 +257,7 @@
             this.totalPN = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.check_Auto_home = new System.Windows.Forms.CheckBox();
             this.RESET_SYSTEM = new System.Windows.Forms.RadioButton();
@@ -271,8 +272,9 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.lblCheckConnectPLC = new System.Windows.Forms.Label();
+            this.lblCheckConnectTCP = new System.Windows.Forms.Label();
             this.btnAutoHome = new System.Windows.Forms.Button();
-            this.btnConnectPLC = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.General_tab = new System.Windows.Forms.TabControl();
@@ -1074,7 +1076,7 @@
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(15, 187);
+            this.checkBox4.Location = new System.Drawing.Point(2, 187);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(149, 17);
             this.checkBox4.TabIndex = 53;
@@ -1086,7 +1088,7 @@
             // 
             this.Gen_ID_check.AutoSize = true;
             this.Gen_ID_check.Enabled = false;
-            this.Gen_ID_check.Location = new System.Drawing.Point(37, 144);
+            this.Gen_ID_check.Location = new System.Drawing.Point(24, 149);
             this.Gen_ID_check.Name = "Gen_ID_check";
             this.Gen_ID_check.Size = new System.Drawing.Size(127, 17);
             this.Gen_ID_check.TabIndex = 53;
@@ -1098,11 +1100,11 @@
             // 
             this.Gen_check_Com.AutoSize = true;
             this.Gen_check_Com.Enabled = false;
-            this.Gen_check_Com.Location = new System.Drawing.Point(56, 108);
+            this.Gen_check_Com.Location = new System.Drawing.Point(34, 113);
             this.Gen_check_Com.Name = "Gen_check_Com";
-            this.Gen_check_Com.Size = new System.Drawing.Size(108, 17);
+            this.Gen_check_Com.Size = new System.Drawing.Size(117, 17);
             this.Gen_check_Com.TabIndex = 53;
-            this.Gen_check_Com.Text = "Connect Comport";
+            this.Gen_check_Com.Text = "TCP/IP Connected";
             this.Gen_check_Com.UseVisualStyleBackColor = true;
             this.Gen_check_Com.CheckedChanged += new System.EventHandler(this.Gen_check_Com_CheckedChanged);
             // 
@@ -1110,38 +1112,48 @@
             // 
             this.Gen_check_PLC.AutoSize = true;
             this.Gen_check_PLC.Enabled = false;
-            this.Gen_check_PLC.Location = new System.Drawing.Point(75, 74);
+            this.Gen_check_PLC.Location = new System.Drawing.Point(50, 74);
             this.Gen_check_PLC.Name = "Gen_check_PLC";
-            this.Gen_check_PLC.Size = new System.Drawing.Size(89, 17);
+            this.Gen_check_PLC.Size = new System.Drawing.Size(101, 17);
             this.Gen_check_PLC.TabIndex = 53;
-            this.Gen_check_PLC.Text = "Connect PLC";
+            this.Gen_check_PLC.Text = "PLC Connected";
             this.Gen_check_PLC.UseVisualStyleBackColor = true;
             this.Gen_check_PLC.CheckedChanged += new System.EventHandler(this.Gen_check_PLC_CheckedChanged);
             // 
             // Start_btn
             // 
             this.Start_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Start_btn.BackColor = System.Drawing.Color.Lime;
-            this.Start_btn.Location = new System.Drawing.Point(22, 522);
+            this.Start_btn.BackColor = System.Drawing.Color.DarkGreen;
+            this.Start_btn.FlatAppearance.BorderSize = 0;
+            this.Start_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Start_btn.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Start_btn.ForeColor = System.Drawing.Color.White;
+            this.Start_btn.Location = new System.Drawing.Point(21, 423);
             this.Start_btn.Name = "Start_btn";
             this.Start_btn.Size = new System.Drawing.Size(120, 56);
             this.Start_btn.TabIndex = 0;
             this.Start_btn.Tag = "";
-            this.Start_btn.Text = "Start";
+            this.Start_btn.Text = "START";
             this.Start_btn.UseVisualStyleBackColor = false;
             this.Start_btn.Click += new System.EventHandler(this.Start_btn_Click);
+            this.Start_btn.MouseEnter += new System.EventHandler(this.Start_btn_MouseEnter);
             // 
             // Stop_btn
             // 
             this.Stop_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Stop_btn.BackColor = System.Drawing.Color.Red;
-            this.Stop_btn.Location = new System.Drawing.Point(22, 599);
+            this.Stop_btn.FlatAppearance.BorderSize = 0;
+            this.Stop_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Stop_btn.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stop_btn.ForeColor = System.Drawing.Color.White;
+            this.Stop_btn.Location = new System.Drawing.Point(21, 500);
             this.Stop_btn.Name = "Stop_btn";
             this.Stop_btn.Size = new System.Drawing.Size(120, 56);
             this.Stop_btn.TabIndex = 1;
-            this.Stop_btn.Text = "Stop";
+            this.Stop_btn.Text = "STOP";
             this.Stop_btn.UseVisualStyleBackColor = false;
             this.Stop_btn.Click += new System.EventHandler(this.Stop_btn_Click);
+            this.Stop_btn.MouseEnter += new System.EventHandler(this.Stop_btn_MouseEnter);
             // 
             // check_ID2
             // 
@@ -1189,7 +1201,7 @@
             this.LB_TIMER.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LB_TIMER.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LB_TIMER.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.LB_TIMER.Location = new System.Drawing.Point(14, 300);
+            this.LB_TIMER.Location = new System.Drawing.Point(15, 300);
             this.LB_TIMER.Name = "LB_TIMER";
             this.LB_TIMER.Size = new System.Drawing.Size(130, 33);
             this.LB_TIMER.TabIndex = 28;
@@ -1202,7 +1214,7 @@
             this.label20.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label20.Font = new System.Drawing.Font("Microsoft YaHei UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(20, 21);
+            this.label20.Location = new System.Drawing.Point(21, 21);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(124, 38);
@@ -1425,14 +1437,18 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(985, 5);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(1712, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 26);
             this.button2.TabIndex = 52;
             this.button2.Text = "NEXT";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.MouseEnter += new System.EventHandler(this.button2_MouseEnter);
             // 
             // En_chek1
             // 
@@ -2613,9 +2629,8 @@
             // 
             // capture1
             // 
-            this.capture1.AutoSize = true;
-            this.capture1.BackColor = System.Drawing.Color.Lime;
-            this.capture1.Location = new System.Drawing.Point(5, 6);
+            this.capture1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.capture1.Location = new System.Drawing.Point(7, 9);
             this.capture1.Name = "capture1";
             this.capture1.Size = new System.Drawing.Size(44, 13);
             this.capture1.TabIndex = 15;
@@ -2679,7 +2694,7 @@
             this.pic_full1.Location = new System.Drawing.Point(228, 2);
             this.pic_full1.Margin = new System.Windows.Forms.Padding(2);
             this.pic_full1.Name = "pic_full1";
-            this.pic_full1.Size = new System.Drawing.Size(1350, 950);
+            this.pic_full1.Size = new System.Drawing.Size(1353, 950);
             this.pic_full1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_full1.TabIndex = 24;
             this.pic_full1.TabStop = false;
@@ -2901,6 +2916,7 @@
             // tabPage1
             // 
             this.tabPage1.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.totalPN);
             this.tabPage1.Controls.Add(this.NGnum);
@@ -2931,6 +2947,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(652, 289);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 58;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -3091,8 +3117,9 @@
             // panel9
             // 
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel9.Controls.Add(this.lblCheckConnectPLC);
+            this.panel9.Controls.Add(this.lblCheckConnectTCP);
             this.panel9.Controls.Add(this.btnAutoHome);
-            this.panel9.Controls.Add(this.btnConnectPLC);
             this.panel9.Controls.Add(this.radioButton2);
             this.panel9.Controls.Add(this.radioButton1);
             this.panel9.Controls.Add(this.checkBox4);
@@ -3105,8 +3132,24 @@
             this.panel9.Controls.Add(this.label20);
             this.panel9.Location = new System.Drawing.Point(8, 24);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(173, 936);
+            this.panel9.Size = new System.Drawing.Size(175, 936);
             this.panel9.TabIndex = 51;
+            // 
+            // lblCheckConnectPLC
+            // 
+            this.lblCheckConnectPLC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCheckConnectPLC.Location = new System.Drawing.Point(155, 76);
+            this.lblCheckConnectPLC.Name = "lblCheckConnectPLC";
+            this.lblCheckConnectPLC.Size = new System.Drawing.Size(11, 11);
+            this.lblCheckConnectPLC.TabIndex = 59;
+            // 
+            // lblCheckConnectTCP
+            // 
+            this.lblCheckConnectTCP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCheckConnectTCP.Location = new System.Drawing.Point(155, 115);
+            this.lblCheckConnectTCP.Name = "lblCheckConnectTCP";
+            this.lblCheckConnectTCP.Size = new System.Drawing.Size(11, 11);
+            this.lblCheckConnectTCP.TabIndex = 59;
             // 
             // btnAutoHome
             // 
@@ -3114,46 +3157,34 @@
             this.btnAutoHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoHome.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoHome.ForeColor = System.Drawing.Color.Black;
-            this.btnAutoHome.Location = new System.Drawing.Point(16, 423);
+            this.btnAutoHome.Location = new System.Drawing.Point(17, 352);
             this.btnAutoHome.Name = "btnAutoHome";
             this.btnAutoHome.Size = new System.Drawing.Size(128, 51);
             this.btnAutoHome.TabIndex = 58;
             this.btnAutoHome.Text = "AUTO HOME";
             this.btnAutoHome.UseVisualStyleBackColor = false;
             this.btnAutoHome.Click += new System.EventHandler(this.btnAutoHome_Click);
-            // 
-            // btnConnectPLC
-            // 
-            this.btnConnectPLC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnConnectPLC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConnectPLC.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectPLC.ForeColor = System.Drawing.Color.Black;
-            this.btnConnectPLC.Location = new System.Drawing.Point(16, 352);
-            this.btnConnectPLC.Name = "btnConnectPLC";
-            this.btnConnectPLC.Size = new System.Drawing.Size(128, 51);
-            this.btnConnectPLC.TabIndex = 57;
-            this.btnConnectPLC.Text = "CONNECT PLC";
-            this.btnConnectPLC.UseVisualStyleBackColor = false;
-            this.btnConnectPLC.Click += new System.EventHandler(this.btnConnectPLC_Click);
+            this.btnAutoHome.MouseEnter += new System.EventHandler(this.btnAutoHome_MouseEnter);
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(37, 263);
+            this.radioButton2.Location = new System.Drawing.Point(30, 263);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(119, 20);
             this.radioButton2.TabIndex = 54;
             this.radioButton2.Text = "Manual Mode";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.MouseEnter += new System.EventHandler(this.radioButton2_MouseEnter);
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(56, 237);
+            this.radioButton1.Location = new System.Drawing.Point(49, 237);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(100, 20);
             this.radioButton1.TabIndex = 54;
@@ -3161,6 +3192,7 @@
             this.radioButton1.Text = "Auto Mode";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.MouseEnter += new System.EventHandler(this.radioButton1_MouseEnter);
             // 
             // General_tab
             // 
@@ -3265,7 +3297,7 @@
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.reportToolStripMenuItem.Text = "Send Report Email";
             this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
@@ -3603,13 +3635,15 @@
         private System.Windows.Forms.CheckBox check_PLC_Con;
         private System.Windows.Forms.RadioButton RATIO_POWERON;
         private System.Windows.Forms.Button btnAutoHome;
-        private System.Windows.Forms.Button btnConnectPLC;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblCheckConnectTCP;
+        private System.Windows.Forms.Label lblCheckConnectPLC;
     }
 }
 

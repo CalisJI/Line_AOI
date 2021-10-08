@@ -22,6 +22,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
+using System.Net.NetworkInformation;
 
 namespace Camera_Check_Component
 {
@@ -112,21 +114,22 @@ namespace Camera_Check_Component
         private void Camera_Check_component_Load(object sender, EventArgs e)
         {
             if (loadform) return;
-           
 
+            lblCheckConnectTCP.BackColor = Color.Red;
+            lblCheckConnectPLC.BackColor = Color.Red;
             button2.Enabled = true;
             button3.Enabled = true;
-            Process[] Pname = Process.GetProcessesByName("comport");
-            if (Pname.Length == 0)
-            {
+            //Process[] Pname = Process.GetProcessesByName("comport");
+            //if (Pname.Length == 0)
+            //{
                 
-                Gen_check_Com.Checked = false;
-            }
-            else
-            {
+            //    Gen_check_Com.Checked = false;
+            //}
+            //else
+            //{
 
-                Gen_check_Com.Checked = true;              
-            }
+            //    Gen_check_Com.Checked = true;              
+            //}
             loadform = true;
             this.Location = new System.Drawing.Point(0, 0);
             system_config = Program_Configuration.GetSystem_Config();
@@ -351,7 +354,11 @@ namespace Camera_Check_Component
             OKnum.Text = _OKnum.ToString();
             NGnum.Text = _NGnum.ToString();
             totalPN.Text = _sum.ToString();
-
+            watcher = new FileSystemWatcher(Path.GetDirectoryName(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt"));
+            watcher.NotifyFilter = NotifyFilters.LastWrite;
+            watcher.Filter = "*.txt";
+            watcher.Changed += Watcher_Changed;
+            watcher.EnableRaisingEvents = true;
         }
         int coun_d = 0;
         bool d_check = false;
@@ -463,9 +470,94 @@ namespace Camera_Check_Component
                 }
             }
         }
+        int changecolor = 0;
+        int changecolorPLC = 0;
         private void Timer_Tick(object sender, EventArgs e)
         {
-
+            
+            bool isAvailable = true;
+            Boolean check_process = false;
+            try
+            {
+                int port = 2000;
+                IPGlobalProperties ipglobal = IPGlobalProperties.GetIPGlobalProperties();
+                TcpConnectionInformation[] tcpinfor = ipglobal.GetActiveTcpConnections();
+                Process[] processlist = Process.GetProcesses();
+                foreach (Process theprocess in processlist)
+                {
+                    if (theprocess.ProcessName == "comport")
+                    {
+                        check_process = true;
+                        break;
+                    }
+                }
+                if (check_process == true)
+                {
+                    foreach (TcpConnectionInformation tcpi in tcpinfor)
+                    {
+                        if (tcpi.LocalEndPoint.Port == port)
+                        {
+                            isAvailable = false;
+                            break;
+                        }
+                    }
+                    if (isAvailable == false)
+                    {
+                        Gen_check_Com.Checked = true;
+                        Connection.connection = true;
+                    }
+                    else
+                    {
+                        Gen_check_Com.Checked = false;
+                    }
+                }
+                else Gen_check_Com.Checked = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            if(isAvailable == true || check_process == false )
+            {
+                lblCheckConnectTCP.BackColor = Color.Red;
+            }
+            if (isAvailable == false)
+            {
+                changecolorPLC++;
+                changecolor++;
+                if(changecolor == 1)
+                lblCheckConnectTCP.BackColor = Color.Green;
+                if(changecolor == 2)
+                {
+                 lblCheckConnectTCP.BackColor = Color.Gray;
+                    changecolor = 0;
+                }    
+            }
+            if (PLCS7_1200 != null)
+                {
+                    if (PLCS7_1200.IsAvailable == true)
+                    {
+                        check_PLC_Con.Checked = true;
+                        PLCS71200_IsConnected = true;
+                    if (changecolorPLC == 1) lblCheckConnectPLC.BackColor = Color.Green;
+                    if (changecolorPLC == 2)
+                    {
+                        lblCheckConnectPLC.BackColor = Color.Gray;
+                        changecolorPLC = 0;
+                    }
+                    }
+                    else
+                    {
+                    check_PLC_Con.Checked = false;
+                    PLCS71200_IsConnected = false;
+                    }
+                }
+            else
+                {
+                    check_PLC_Con.Checked = false;
+                    PLCS71200_IsConnected = false;
+                    lblCheckConnectPLC.BackColor = Color.Red;
+                }
             timer_sum++;
             if (started)
             {
@@ -1420,11 +1512,7 @@ namespace Camera_Check_Component
                 }
             }
             system_config = Program_Configuration.GetSystem_Config();
-            watcher = new FileSystemWatcher(Path.GetDirectoryName(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt"));
-            watcher.NotifyFilter = NotifyFilters.LastWrite;
-            watcher.Filter = "*.txt";
-            watcher.Changed += Watcher_Changed;
-            watcher.EnableRaisingEvents = true;
+            
             watch_a = new FileSystemWatcher(Path.GetDirectoryName(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\a.txt"));
             watch_a.NotifyFilter = NotifyFilters.LastWrite;
             watch_a.Filter = "*.txt";
@@ -1471,6 +1559,7 @@ namespace Camera_Check_Component
                 if (ee == 2)
                 {
                     var taske = ProcessReadAsync(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\e.txt", 'e');
+                    ee = 0;
                 }
 
             }
@@ -1485,6 +1574,7 @@ namespace Camera_Check_Component
                 if (d == 2)
                 {
                     var taskd = ProcessReadAsync(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\d.txt", 'd');
+                    d = 0;
                 }
 
             }
@@ -1498,6 +1588,7 @@ namespace Camera_Check_Component
                 if (c == 2)
                 {
                     var taskc = ProcessReadAsync(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\c.txt", 'c');
+                    c = 0;
                 }
 
             }
@@ -1511,6 +1602,7 @@ namespace Camera_Check_Component
                 if (b == 2)
                 {
                     var taskb = ProcessReadAsync(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\b.txt", 'b');
+                    b = 0;
                 }
 
             }
@@ -1524,6 +1616,7 @@ namespace Camera_Check_Component
                 if (a == 2)
                 {
                     var taska = ProcessReadAsync(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\a.txt", 'a');
+                    a = 0;
                 }
 
             }
@@ -1538,12 +1631,13 @@ namespace Camera_Check_Component
                 if (j == 2)
                 {
                    var tasko = ProcessReadAsync(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt", 'o');
+                    j = 0;
                 }
 
             }
         }
-        int CounterVariable_a = 0;
-        int CounterVariable_h = 0;
+        //int CounterVariable_a = 0;
+        //int CounterVariable_h = 0;
         async Task<string> ReadTextAsync(string filePath)
         {
             //using var sourceStream =
@@ -1778,53 +1872,79 @@ namespace Camera_Check_Component
         }
         private void read_data(string cap_order)
         {
-            if (InvokeRequired) this.BeginInvoke(new MethodInvoker(delegate() { read_data(cap_order); }));
+            if (InvokeRequired)
+            {
+
+                this.BeginInvoke(new MethodInvoker(delegate () { read_data(cap_order); }));
+            }
             else
             {
 
                 try
                 {
-                    //string cap_order = File.ReadAllText(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt");
-                    cap_order.Trim(new char[] { '\r', '\n' });
-                  
-                    //Thread.Sleep(10);
-                    j = 0;
-                    status("[TCP/IP] " + cap_order + "");
-                    switch (cap_order)
+                    if (PLCS71200_IsConnected)
                     {
-                       
-                        case ("i"):
-                            status("Start");
-                            break;
-                        case ("j"):
-                            status("Stop");
-                            break;
-                        case ("k"):
-                            status("Reset");
-                            CounterVariable_a = 0;
-                            break;
-                        case ("m"):
-                            status("Error Send A - Variable_m");
-                            break;
-                        case ("h"):
-                            CounterVariable_h++;
-                                if(CounterVariable_a <=10)
-                                {
-                                    status("No Error");
-                                    CounterVariable_a = 0;
-                                    return;
-                                }    
-                                else
-                                {
-                                    CounterVariable_a = 0;
-                                    status("Error Send A - Variable_h");
-                                } 
-                                if(CounterVariable_h == 2)
-                                {
-                                status("Error_Variable_h");
-                                CounterVariable_h = 0;
-                                }    
-                            break;
+                        //string cap_order = File.ReadAllText(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\Output.txt");
+                        cap_order.Trim(new char[] { '\r', '\n' });
+
+                        //Thread.Sleep(10);
+                        //j = 0;
+                        //status("[TCP/IP] " + cap_order + "");
+                        var readi = PLCS7_1200.Read(DataType.DataBlock, 5, 256, VarType.String, 20);
+                        var readi1 = readi.ToString().Substring(2, 5);
+                        var readi2 = PLCS7_1200.Read(DataType.DataBlock, 5, 512, VarType.String, 20);
+                        var readi3 = readi2.ToString().Substring(2, 5);
+                        MethodInvoker invoker = delegate
+                        { if (readi1.Trim() != "0")
+                            {
+                                TB_idworker.Text = readi1;
+                            }
+                            if (readi3.Trim() != "0")
+                            {
+                                TB_wker2.Text = readi3;
+                            }
+                        }; this.Invoke(invoker);
+
+                        //switch (cap_order)
+                        //{
+
+                        //    case ("i"):5
+                        //        status("Start");
+                        //        break;
+                        //    case ("j"):
+                        //        status("Stop");
+                        //        break;
+                        //    case ("k"):
+                        //        status("Reset");
+                        //        CounterVariable_a = 0;
+                        //        break;
+                        //    case ("m"):
+                        //        status("Error Send A - Variable_m");
+                        //        break;
+                        //    case ("h"):
+                        //        CounterVariable_h++;
+                        //            if(CounterVariable_a <=10)
+                        //            {
+                        //                status("No Error");
+                        //                CounterVariable_a = 0;
+                        //                return;
+                        //            }    
+                        //            else
+                        //            {
+                        //                CounterVariable_a = 0;
+                        //                status("Error Send A - Variable_h");
+                        //            } 
+                        //            if(CounterVariable_h == 2)
+                        //            {
+                        //            status("Error_Variable_h");
+                        //            CounterVariable_h = 0;
+                        //            }    
+                        //        break;
+                        //}
+                    }
+                    else
+                    {
+                        MessageBox.Show("You haven't connect PLC");
                     }
 
                 }
@@ -2861,13 +2981,13 @@ namespace Camera_Check_Component
         {
             MethodInvoker inv = delegate
             {
-
+                text = Regex.Replace(text, @"(\s|@|&|\?|\0|\u0001|\u0002|\u0003|\u0004|\u0005|\r|\n)", "");
                 string[] txt = new string[dem];
                 textBox_stt.AppendText("[" + DateTime.Now.ToString() + "]" + text + Environment.NewLine);
 
 
                 txt = textBox_stt.Text.Split(new char[] { '\n', '\r' });
-                using (StreamWriter sw = File.AppendText("Console.txt"))
+                using (StreamWriter sw = File.AppendText(@"C:\Users\Admin\source\repos\Visual\Camera_Check_Component\bin\Debug\Console.txt"))
                 {
                     sw.WriteLine("" + txt[w] + "");
                 }
@@ -2931,7 +3051,30 @@ namespace Camera_Check_Component
             Path_form.Show();
         }
         OpenFileDialog openFileDialog;
+        Process[] Pname = null;
+        public bool CheckEthernetConnection(string hostNameOrAddress)
+        {
+            bool pingStatus = false;
 
+            using (Ping p = new Ping())
+            {
+                string data = "aaa";
+                byte[] buffer = Encoding.ASCII.GetBytes(data);
+                int timeout = 120;
+
+                try
+                {
+                    PingReply reply = p.Send(hostNameOrAddress, timeout, buffer);
+                    pingStatus = (reply.Status == IPStatus.Success);
+                }
+                catch (Exception)
+                {
+                    pingStatus = false;
+                }
+            }
+
+            return pingStatus;
+        }
         private void cOMConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (started)
@@ -2939,21 +3082,58 @@ namespace Camera_Check_Component
                 MessageBox.Show("Please stop program first!");
                 return;
             }
-            Process[] Pname = Process.GetProcessesByName("comport");
-            if (Pname.Length==0)
+            if (CheckEthernetConnection("192.168.0.7"))
             {
-                Process.Start(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\comport.exe");
-                Gen_check_Com.Checked = true;
+                try
+                {
+                    PLCS7_1200 = new Plc(CpuType.S71200, ip_add, 0, 1);
+                    PLCS7_1200.Open();
+                    if (PLCS7_1200.IsConnected == true)
+                    {
+                        PLC_con = true;
+                        check_PLC_Con.Checked = true;
+                        PLCS71200_IsConnected = true;
+                        Connection.connection1 = false;
+                    }
+                    else
+                    {
+                        PLC_con = false;
+                        check_PLC_Con.Checked = false;
+                        PLCS71200_IsConnected = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //  MessageBox.Show(ex.Message);
+                    Connection.connection1 = true;
+                    Connection frm_Connect = new Connection();
+                    frm_Connect.ShowDialog();
+                }
+                Pname = Process.GetProcessesByName("comport");
+                if (PLCS71200_IsConnected == true)
+                {
+                    if (Pname.Length == 0)
+                    {
+                        Process.Start(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\comport.exe");
+                        Connection frm_Connect = new Connection();
+                        frm_Connect.ShowDialog();
+                        //   Gen_check_Com.Checked = true;
+                    }
+                    else
+                    {
+                        //   Gen_check_Com.Checked = true;
+                        MessageBox.Show("Your connection is opening!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
-            else 
+            else
             {
-
-                Gen_check_Com.Checked = true;
-                MessageBox.Show("Com Port connected");
+                MessageBox.Show("Please check connect cap Ethernet!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             //Process.Start(@"C:\Users\Admin\source\repos\comport\comport\bin\Debug\comport.exe");
 
             //Gen_check_Com.Checked = true;
+          
         }
 
 
@@ -3051,40 +3231,65 @@ namespace Camera_Check_Component
         }
         private void Camera_Check_component_FormClosing(object sender, FormClosingEventArgs e)
         {
-            update_system();
-            RESET();
-            timer.Stop();
-
-
-            if (PLC_con)
+            DialogResult dialog = MessageBox.Show("Are you sure you want to really exit application ? ",
+                            "Exit",
+                             MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Question);
+            if (dialog == DialogResult.Yes)
             {
-                string Addr = "M170.0";
-                PLCS7_1200.Write(Addr, int.Parse("1"));
-                string Addr1 = "M170.2";
-                PLCS7_1200.Write(Addr1, int.Parse("1"));
-                loadform = false;
-                PLC_con = false;
-                PLCS7_1200.Close();
+                Process[] processlist = Process.GetProcesses();
+                foreach (Process theprocess in processlist)
+                {
+                    if (theprocess.ProcessName == "comport")
+                    {
+                        theprocess.Kill();
+                    }
+                }
+                update_system();
+                RESET();
+                timer.Stop();
+
+                if (watcher.EnableRaisingEvents)
+                {
+                    watcher.Changed -= Watcher_Changed;
+                    watcher.EnableRaisingEvents = false;
+                    watcher = null;
+                }
+                //if (PLC_con)
+                //{
+                //    string Addr = "M170.0";
+                //    PLCS7_1200.Write(Addr, int.Parse("1"));
+                //    string Addr1 = "M170.2";
+                //    PLCS7_1200.Write(Addr1, int.Parse("1"));
+                //    loadform = false;
+                //    PLC_con = false;
+                //    PLCS7_1200.Close();
+                //}
+                //else
+                //{
+                //    PLCS7_1200 = new Plc(CpuType.S71200, "192.168.0.7", 0, 0);
+                //    if (PLCS7_1200.IsAvailable)
+                //    {
+                //        PLCS7_1200.Open();
+                //        if (PLCS7_1200.IsConnected == true)
+                //        {
+                //            string Addr = "M170.0";
+                //            PLCS7_1200.Write(Addr, int.Parse("1"));
+                //            string Addr1 = "M170.2";
+                //            PLCS7_1200.Write(Addr1, int.Parse("1"));
+                //            loadform = false;
+                //            PLC_con = false;
+                //        }
+                //        PLCS7_1200.Close();
+                //    }
+                //}
+                if (ledinf.IsBusy) ledinf.CancelAsync();
             }
             else
             {
-                PLCS7_1200 = new Plc(CpuType.S71200, "192.168.0.7", 0, 0);
-                if (PLCS7_1200.IsAvailable)
-                {
-                    PLCS7_1200.Open();
-                    if (PLCS7_1200.IsConnected == true)
-                    {
-                        string Addr = "M170.0";
-                        PLCS7_1200.Write(Addr, int.Parse("1"));
-                        string Addr1 = "M170.2";
-                        PLCS7_1200.Write(Addr1, int.Parse("1"));
-                        loadform = false;
-                        PLC_con = false;
-                    }
-                    PLCS7_1200.Close();
-                }
+                e.Cancel = true;
             }
-            if (ledinf.IsBusy) ledinf.CancelAsync();
+
         }
 
         private void Stop_btn_Click(object sender, EventArgs e)
@@ -3117,12 +3322,7 @@ namespace Camera_Check_Component
                 Pic_Cam5.Image = null;
                 Pic_Cam6.Image = null;
 
-                if (watcher.EnableRaisingEvents)
-                {
-                    watcher.Changed -= Watcher_Changed;
-                    watcher.EnableRaisingEvents = false;
-                    watcher = null;
-                } 
+               
                 if (watch_a.EnableRaisingEvents) 
                 {
                     watch_a.Changed -= Watch_a_Changed;
@@ -6199,45 +6399,59 @@ namespace Camera_Check_Component
         ClassServoInput CLASS_IP = new ClassServoInput();
         ClassSerVoOutput CLASS_OP = new ClassSerVoOutput();
         bool PLC_con = false;
-        private void btnConnectPLC_Click(object sender, EventArgs e)
+        Boolean PLCS71200_IsConnected = false;
+        string ip_add = "192.168.0.7"; 
+        //private void btnConnectPLC_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        PLCS7_1200 = new Plc(CpuType.S71200, ip_add, 0, 1);
+        //        PLCS7_1200.Open();
+        //        if (PLCS7_1200.IsConnected == true)
+        //        {
+        //            MessageBox.Show("Connect to PLC Successful", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            PLC_con = true;
+        //            check_PLC_Con.Checked = true;
+        //            PLCS71200_IsConnected = true;
+        //        }
+        //        else
+        //        {
+        //            PLC_con = false;
+        //            check_PLC_Con.Checked = false;
+        //            MessageBox.Show("Error");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+
+        //   // }
+        //}
+        private void btnAutoHome_Click(object sender, EventArgs e)
         {
-            PLCS7_1200 = new Plc(CpuType.S71200, "192.168.0.7", 0, 1);
-          //  if (PLCS7_1200.IsAvailable)
-         // {
-                PLCS7_1200.Open();
-                if (PLCS7_1200.IsConnected == true)
+            if (PLCS71200_IsConnected)
+            {
+                var result = MessageBox.Show("Do you want to Auto Home", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    MessageBox.Show("Connect to PLC Successful", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    PLC_con = true;
-                    check_PLC_Con.Checked = true;
+                    PLCS7_1200.Write("DB1.DBX0.4", 1);
+                    PLCS7_1200.Write("DB2.DBX0.4", 1);
+                    PLCS7_1200.Write("M14.3", 1);
+                    Thread.Sleep(1);
+                    PLCS7_1200.Write("DB1.DBX0.4", 0);
+                    PLCS7_1200.Write("DB2.DBX0.4", 0);
+                    PLCS7_1200.Write("M14.3", 0);
+                    check_Auto_home.Checked = true;
                 }
                 else
                 {
-                    PLC_con = false;
-                    check_PLC_Con.Checked = false;
-                    MessageBox.Show("Error");
+                    check_Auto_home.Checked = false;
                 }
-
-           // }
-        }
-       private void btnAutoHome_Click(object sender, EventArgs e)
-        {
-
-            var result = MessageBox.Show("Do you want to Auto Home", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                PLCS7_1200.Write("DB1.DBX0.4", 1);
-                PLCS7_1200.Write("DB2.DBX0.4", 1);
-                PLCS7_1200.Write("M14.3", 1);
-                Thread.Sleep(1);
-                PLCS7_1200.Write("DB1.DBX0.4", 0);
-                PLCS7_1200.Write("DB2.DBX0.4", 0);
-                PLCS7_1200.Write("M14.3", 0);
-                check_Auto_home.Checked = true;
             }
             else
             {
-                check_Auto_home.Checked = false;
+                MessageBox.Show("Failed to respond " + ip_add + ":102");
             }
 
 
@@ -6911,6 +7125,39 @@ namespace Camera_Check_Component
         bool get = false;
         private Bitmap screenBitmap;
         Graphics screenGraphics;
+        int aaaa = 0;
+        private void button1_Click(object sender, EventArgs e)
+        { 
+        }
+        private void Start_btn_MouseEnter(object sender, EventArgs e)
+        {
+            Start_btn.Cursor = Cursors.Hand;
+        }
+
+        private void Stop_btn_MouseEnter(object sender, EventArgs e)
+        {
+            Stop_btn.Cursor = Cursors.Hand;
+        }
+
+        private void btnAutoHome_MouseEnter(object sender, EventArgs e)
+        {
+            btnAutoHome.Cursor = Cursors.Hand;
+        }
+
+        private void radioButton1_MouseEnter(object sender, EventArgs e)
+        {
+            radioButton1.Cursor = Cursors.Hand;
+        }
+
+        private void radioButton2_MouseEnter(object sender, EventArgs e)
+        {
+            radioButton2.Cursor = Cursors.Hand;
+        }
+
+        private void button2_MouseEnter(object sender, EventArgs e)
+        {
+            button2.Cursor = Cursors.Hand;
+        }
     }
 }
 

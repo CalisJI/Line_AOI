@@ -144,7 +144,6 @@ C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check
 C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.CopyComplete
 C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.exe
 C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.pdb
-C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csprojAssemblyReference.cache
 C:\Users\quyth\OneDrive\Tài liệu\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.resx
 C:\Users\quyth\OneDrive\Tài liệu\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.cs
 C:\Users\quyth\OneDrive\Tài liệu\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.Designer.cs
@@ -262,3 +261,28 @@ F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Deb
 F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.exe
 F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.pdb
 F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.AssemblyReference.cache
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.resx
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.cs
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.Designer.cs
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_Component.exe.config
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_Component.exe.manifest
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_Component.application
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_Component.exe
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_Component.pdb
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.AssemblyReference.cache
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Camera_setting_Form.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Camera_Check_component.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Cam_Review.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Com_setting.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Login.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Path_File_Component.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Sign_up.resources
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.GenerateResource.cache
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.exe.manifest
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.application
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.CopyComplete
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.exe
+C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.pdb
+C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Connection.resources

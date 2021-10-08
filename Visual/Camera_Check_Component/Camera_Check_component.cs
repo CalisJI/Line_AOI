@@ -3146,6 +3146,20 @@ namespace Camera_Check_Component
             {
                 update_system();
                 RESET();
+                Process[] processlist = Process.GetProcesses();
+                foreach (Process theprocess in processlist)
+                {
+                    if (theprocess.ProcessName == "comport")
+                    {
+                        theprocess.Kill();
+                    }
+                }
+                if (watcher.EnableRaisingEvents)
+                {
+                    watcher.Changed -= Watcher_Changed;
+                    watcher.EnableRaisingEvents = false;
+                    watcher = null;
+                }
                 Environment.Exit(0);
             }
 
@@ -3231,7 +3245,7 @@ namespace Camera_Check_Component
         }
         private void Camera_Check_component_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Are you sure you want to really exit application ? ",
+            DialogResult dialog = MessageBox.Show("Do you want to really exit application ? ",
                             "Exit",
                              MessageBoxButtons.YesNo,
                              MessageBoxIcon.Question);

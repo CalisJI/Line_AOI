@@ -260,7 +260,6 @@ F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Deb
 F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.CopyComplete
 F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.exe
 F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.pdb
-F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.AssemblyReference.cache
 C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.resx
 C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.cs
 C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\bin\Debug\Camera_Check_component.Designer.cs
@@ -287,3 +286,4 @@ C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Cam
 C:\Users\Admin\Source\Repos\Line_AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.pdb
 C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Connection.resources
 C:\Users\Admin\source\repos\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.csproj.AssemblyReference.cache
+F:\VISUAL PROJECT\CSharp\Winfom\Visual AOI\Visual\Camera_Check_Component\obj\Debug\Camera_Check_Component.Connection.resources
